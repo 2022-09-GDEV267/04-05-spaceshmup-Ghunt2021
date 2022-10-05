@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour
+{
 
     [Header("Set In Inspector")]
 
@@ -10,16 +11,29 @@ public class Projectile : MonoBehaviour {
     [Header("Set Dynamically")]
 
 
-   
-    private void Awake()
+
+    private BoundsCheck bndCheck;
+
+
+
+    void Awake()
     {
+
+        bndCheck = GetComponent<BoundsCheck>();
 
     }
 
-    private void Update()
-    {
-      
-    }
 
-    
+    void Update()
+    {
+
+        if (bndCheck.offUp)
+        {                                                // a
+
+            Destroy(gameObject);
+
+        }
+
+
+    }
 }
