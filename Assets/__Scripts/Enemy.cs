@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour {
         private BoundsCheck bndCheck;     
     
     // This is a property: A method that acts like a field
-    public class Enemy : MonoBehaviour
-    {
+   // public class Enemy : MonoBehaviour
+   // {
         void Awake()
         {                                                           // b
 
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour {
             pos = tempPos;
 
         }
-    }
+    // }
     void OnCollisionEnter(Collision coll)
     {
 

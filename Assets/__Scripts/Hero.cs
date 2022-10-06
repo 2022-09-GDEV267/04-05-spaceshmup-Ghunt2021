@@ -25,7 +25,7 @@ public class Hero : MonoBehaviour {
 
     private float _shieldLevel = 1; // Remember the underscore
 
-    public float shieldLevel = 1;
+    // public float shieldLevel = 1;
 
     private GameObject lastTriggerGo = null;                           // a
 
@@ -33,6 +33,7 @@ public class Hero : MonoBehaviour {
 
     public float gameRestartDelay = 2f;
 
+    public float projectileSpeed = 40f;
     void Awake()
     {
 

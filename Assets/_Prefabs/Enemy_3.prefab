@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4039162470098207682}
   - component: {fileID: 6451219120140282929}
   - component: {fileID: 5176619341878526128}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3366575082725014738}
   - component: {fileID: 1728653761995528958}
   - component: {fileID: 7685053992049645775}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,9 +204,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4308955006760525877}
   - component: {fileID: 7378987393112845349}
-  m_Layer: 0
+  - component: {fileID: -1161229267391396755}
+  - component: {fileID: -2517284733709391977}
+  m_Layer: 9
   m_Name: Enemy_3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,6 +247,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &-1161229267391396755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234732202361528687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b483c78a264b747a4500e775cb6a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 14
+  fireRate: 0.3
+  health: 4
+  score: 400
+--- !u!114 &-2517284733709391977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234732202361528687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac691aa6a0aaefe4aa8af67a198682ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: -2
+  keepOnScreen: 0
+  isOnScreen: 1
+  camWidth: 0
+  camHeight: 0
+  offRight: 0
+  offLeft: 0
+  offUp: 0
+  offDown: 0
 --- !u!1 &6008750981147337649
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +296,7 @@ GameObject:
   - component: {fileID: 5135510585848250457}
   - component: {fileID: 2318205834553960586}
   - component: {fileID: 8397704898438078044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wings (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

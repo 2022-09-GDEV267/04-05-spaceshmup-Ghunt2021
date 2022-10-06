@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour {
 
     public float rotationsPerSecond = 0.1f;
 
-
+    public Material mat;
 
     [Header("Set Dynamically")]
 
