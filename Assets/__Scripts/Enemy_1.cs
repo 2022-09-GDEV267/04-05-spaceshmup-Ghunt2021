@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 
 using UnityEngine;
-
+using ShmupPlus;
 
 
 
@@ -77,7 +77,7 @@ public class Enemy_1 : Enemy
         // Because pos is a property, you can't directly set pos.x
 
 
-        //   so get the pos as an editable Vector3
+        //ï¿½ï¿½ so get the pos as an editable Vector3
 
 
         Vector3 tempPos = pos;

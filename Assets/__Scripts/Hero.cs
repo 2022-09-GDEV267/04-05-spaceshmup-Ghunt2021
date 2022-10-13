@@ -48,7 +48,8 @@ public class Hero : MonoBehaviour {
 
     public Weapon[] weapons;
 
-    void Awake()
+    //void Awake()
+    void Start()
     {
 
         if (S == null)
@@ -70,10 +71,10 @@ public class Hero : MonoBehaviour {
         weapons[0].SetType(WeaponType.blaster);
     }
 
-    void Start()
-    {
+    //void Start()
+   // {
 
-    }
+   // }
 	
 	// Update is called once per frame
 	void Update()

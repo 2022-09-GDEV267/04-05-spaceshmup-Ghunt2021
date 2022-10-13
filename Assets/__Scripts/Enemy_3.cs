@@ -5,21 +5,22 @@ using System.Collections.Generic;
 
 
 using UnityEngine;
+using ShmupPlus;
 
 
 
 
 public class Enemy_3 : Enemy
-{  // Enemy_3 extends Enemy
+{// Enemy_3 extends Enemy
 
 
-    // Enemy_3 will move following a Bezier curve, which is a linear
+        // Enemy_3 will move following a Bezier curve, which is a linear
 
 
-    //   interpolation between more than two points.
+        // interpolation between more than two points.
 
 
-    [Header("Set in Inspector: Enemy_3")]
+    [Header("Set in Inspector: Enemy_3")]
 
 
     public float lifeTime = 5;
@@ -50,17 +51,17 @@ public class Enemy_3 : Enemy
 
 
 
-        // The start position has already been set by Main.SpawnEnemy()
+        // The start position has already been set by Main.SpawnEnemy()
 
 
-        points[0] = pos;
+        points[0] = pos;
 
 
 
-        // Set xMin and xMax the same way that Main.SpawnEnemy() does
+        // Set xMin and xMax the same way that Main.SpawnEnemy() does
 
 
-        float xMin = -bndCheck.camWidth + bndCheck.radius;
+        float xMin = -bndCheck.camWidth + bndCheck.radius;
 
 
         float xMax = bndCheck.camWidth - bndCheck.radius;
@@ -71,10 +72,10 @@ public class Enemy_3 : Enemy
         Vector3 v;
 
 
-        // Pick a random middle position in the bottom half of the screen
+                // Pick a random middle position in the bottom half of the screen
 
 
-        v = Vector3.zero;
+        v = Vector3.zero;
 
 
         v.x = Random.Range(xMin, xMax);
@@ -119,10 +120,10 @@ public class Enemy_3 : Enemy
     {
 
 
-        // Bezier curves work based on a u value between 0 & 1
+         // Bezier curves work based on a u value between 0 & 1
 
 
-        float u = (Time.time - birthTime) / lifeTime;
+        float u = (Time.time - birthTime) / lifeTime;
 
 
 
@@ -131,10 +132,10 @@ public class Enemy_3 : Enemy
         {
 
 
-            // This Enemy_3 has finished its life
+                // This Enemy_3 has finished its life
 
 
-            Destroy(this.gameObject);
+                Destroy(this.gameObject);
 
 
             return;
@@ -144,10 +145,10 @@ public class Enemy_3 : Enemy
 
 
 
-        // Interpolate the three Bezier curve points
+         // Interpolate the three Bezier curve points
 
 
-        Vector3 p01, p12;
+        Vector3 p01, p12;
 
         u = u - 0.2f * Mathf.Sin(u * Mathf.PI * 2);
 

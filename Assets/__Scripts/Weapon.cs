@@ -109,7 +109,7 @@ public class Weapon : MonoBehaviour
 
 
 
-    private Renderer collarRend;
+    private Renderer collarRend;
 
 
 
@@ -124,29 +124,29 @@ public class Weapon : MonoBehaviour
 
         // Call SetType() for the default _type of WeaponType.none
 
-        SetType(_type);                                                    // a
+        SetType(_type); // a
 
 
 
-        // Dynamically create an anchor for all Projectiles
+        // Dynamically create an anchor for all Projectiles
 
-        if (PROJECTILE_ANCHOR == null)
-        {                                     // b
+            if (PROJECTILE_ANCHOR == null)
+        { // b
 
-            GameObject go = new GameObject("_ProjectileAnchor");
+            GameObject go = new GameObject("_ProjectileAnchor");
 
             PROJECTILE_ANCHOR = go.transform;
 
         }
 
-        // Find the fireDelegate of the root GameObject
+        // Find the fireDelegate of the root GameObject
 
-        GameObject rootGO = transform.root.gameObject;                       // c
+        GameObject rootGO = transform.root.gameObject;                       // c
 
-        if (rootGO.GetComponent<Hero>() != null)
-        {                         // d
+            if (rootGO.GetComponent<Hero>() != null)
+        {            // d
 
-            rootGO.GetComponent<Hero>().fireDelegate += Fire;
+            rootGO.GetComponent<Hero>().fireDelegate += Fire;
 
         }
 
@@ -171,9 +171,8 @@ public class Weapon : MonoBehaviour
         _type = wt;
 
         if (type == WeaponType.none)
-        {                                       // e
-
-            this.gameObject.SetActive(false);
+            {
+            this.gameObject.SetActive(false);
 
             return;
 
@@ -185,37 +184,35 @@ public class Weapon : MonoBehaviour
 
         }
 
-        def = Main.GetWeaponDefinition(_type);                               // f
+        def = Main.GetWeaponDefinition(_type);
+        collarRend.material.color = def.color;
 
-        collarRend.material.color = def.color;
+        lastShotTime = 0; // You can fire immediately after _type is set.// g
 
-        lastShotTime = 0; // You can fire immediately after _type is set.    // g
-
-    }
+}
 
 
 
     public void Fire()
     {
 
-        // If this.gameObject is inactive, return
+        // If this.gameObject is inactive, return
 
-        if (!gameObject.activeInHierarchy) return;                           // h
+        if (!gameObject.activeInHierarchy) return; // h
 
-        // If it hasn't been enough time between shots, return
+        // If it hasn't been enough time between shots, return
 
-        if (Time.time - lastShotTime < def.delayBetweenShots)
-        {              // i
-
-            return;
+        if (Time.time - lastShotTime < def.delayBetweenShots)
+        {
+            return;
 
         }
 
         Projectile p;
 
-        Vector3 vel = Vector3.up * def.velocity;                             // j
-
-        if (transform.up.y < 0)
+        Vector3 vel = Vector3.up * def.velocity;
+        
+        if (transform.up.y < 0)
         {
 
             vel.y = -vel.y;
@@ -223,9 +220,9 @@ public class Weapon : MonoBehaviour
         }
 
         switch (type)
-        {                                                      // k
-
-            case WeaponType.blaster:
+        {
+            
+            case WeaponType.blaster:
 
                 p = MakeProjectile();
 
@@ -235,21 +232,20 @@ public class Weapon : MonoBehaviour
 
 
 
-            case WeaponType.spread:                                          // l
+            case WeaponType.spread:
+            p = MakeProjectile();// Make middle Projectile
 
-                p = MakeProjectile();     // Make middle Projectile
+                p.rigid.velocity = vel;
 
-                p.rigid.velocity = vel;
+                p = MakeProjectile(); // Make right Projectile
 
-                p = MakeProjectile();     // Make right Projectile
-
-                p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
+                    p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
 
                 p.rigid.velocity = p.transform.rotation * vel;
 
-                p = MakeProjectile();     // Make left Projectile
+                p = MakeProjectile(); // Make left Projectile
 
-                p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
+                    p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
 
                 p.rigid.velocity = p.transform.rotation * vel;
 
@@ -264,14 +260,14 @@ public class Weapon : MonoBehaviour
 
 
     public Projectile MakeProjectile()
-    {                                    // m
+    {// m
 
-        GameObject go = Instantiate<GameObject>(def.projectilePrefab);
+            GameObject go = Instantiate<GameObject>(def.projectilePrefab);
 
         if (transform.parent.gameObject.tag == "Hero")
-        {                  // n
+        { // n
 
-            go.tag = "ProjectileHero";
+            go.tag = "ProjectileHero";
 
             go.layer = LayerMask.NameToLayer("ProjectileHero");
 
@@ -287,15 +283,15 @@ public class Weapon : MonoBehaviour
 
         go.transform.position = collar.transform.position;
 
-        go.transform.SetParent(PROJECTILE_ANCHOR, true);                  // o
-
-        Projectile p = go.GetComponent<Projectile>();
+        go.transform.SetParent(PROJECTILE_ANCHOR, true);
+        
+        Projectile p = go.GetComponent<Projectile>();
 
         p.type = type;
 
-        lastShotTime = Time.time;                                           // p
-
-        return (p);
+        lastShotTime = Time.time;
+        
+        return (p);
 
 
 

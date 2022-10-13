@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 
 using UnityEngine;
+using ShmupPlus;
 
 
 
 
 public class Enemy_2 : Enemy
 {                                               // a
+
 
 
     [Header("Set in Inspector: Enemy_2")]
@@ -116,7 +118,7 @@ public class Enemy_2 : Enemy
     {
 
 
-        // Bézier curves work based on a u value between 0 & 1
+        // Bï¿½zier curves work based on a u value between 0 & 1
 
 
         float u = (Time.time - birthTime) / lifeTime;

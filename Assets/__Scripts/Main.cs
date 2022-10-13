@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ShmupPlus;
+
 
 public class Main : MonoBehaviour {
 
@@ -26,7 +28,7 @@ public class Main : MonoBehaviour {
     public WeaponType[] powerUpFrequency = new WeaponType[] {       // b
 
 
-     WeaponType.blaster, WeaponType.blaster,
+    WeaponType.blaster, WeaponType.blaster,
 
      WeaponType.spread, WeaponType.shield };
 
@@ -34,7 +36,7 @@ public class Main : MonoBehaviour {
 
 
 
-    public void shipDestroyed(Enemy e)
+    public void ShipDestroyed(Enemy e)
     {                                   // c
 
 
@@ -95,12 +97,16 @@ public class Main : MonoBehaviour {
 
         bndCheck = GetComponent<BoundsCheck>();
 
-
-
-
         // Invoke SpawnEnemy() once (in 2 seconds, based on default values)
 
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+
+        WEAP_DICT = new Dictionary<WeaponType,WeaponDefinition>();
+        foreach(WeaponDefinition def in weaponDefinitions)
+        {
+            WEAP_DICT[def.type] = def;
+        }
+
     }
 
     public void SpawnEnemy()
