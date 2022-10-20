@@ -30,7 +30,9 @@ public class Main : MonoBehaviour {
 
     WeaponType.blaster, WeaponType.blaster,
 
-     WeaponType.spread, WeaponType.shield };
+    WeaponType.spread, WeaponType.shield, 
+    
+    WeaponType.laser, WeaponType.ordinance};
 
     private BoundsCheck bndCheck;
 

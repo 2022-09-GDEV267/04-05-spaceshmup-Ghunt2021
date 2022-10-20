@@ -37,8 +37,6 @@ public class Enemy_3 : Enemy
     public float birthTime;
 
 
-
-
     // Again, Start works well because it is not used by the Enemy superclass
 
 
@@ -111,10 +109,7 @@ public class Enemy_3 : Enemy
 
         birthTime = Time.time;
 
-
     }
-
-
 
     public override void Move()
     {

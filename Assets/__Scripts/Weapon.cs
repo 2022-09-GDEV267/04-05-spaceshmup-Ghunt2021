@@ -46,8 +46,10 @@ public enum WeaponType
     laser,      // [NI]Damage over time
 
 
-    shield      // Raise shieldLevel
+    shield,      // Raise shieldLevel
 
+
+    ordinance
 
 }
 
@@ -76,25 +78,22 @@ public class WeaponDefinition
     public float damageOnHit = 0;           // Amount of damage caused
 
 
-    public float continuousDamage = 0;      // Damage per second (Laser)
+    public float continuousDamage = 0;      // Damage per second
 
 
     public float delayBetweenShots = 0;
 
 
-    public float velocity = 20;             // Speed of projectiles
-
+    public float velocity = 20;             // peed of projectiles
 
 }
 
 
 public class Weapon : MonoBehaviour
 {
-
+    
 
     static public Transform PROJECTILE_ANCHOR;
-
-
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -107,11 +106,7 @@ public class Weapon : MonoBehaviour
 
     public float lastShotTime; // Time last shot was fired
 
-
-
     private Renderer collarRend;
-
-
 
     void Start()
     {
@@ -119,8 +114,6 @@ public class Weapon : MonoBehaviour
         collar = transform.Find("Collar").gameObject;
 
         collarRend = collar.GetComponent<Renderer>();
-
-
 
         // Call SetType() for the default _type of WeaponType.none
 
@@ -188,8 +181,8 @@ public class Weapon : MonoBehaviour
         collarRend.material.color = def.color;
 
         lastShotTime = 0; // You can fire immediately after _type is set.// g
-
-}
+        
+    }
 
 
 
@@ -230,39 +223,85 @@ public class Weapon : MonoBehaviour
 
                 break;
 
+            case WeaponType.laser:
 
+                p = MakeProjectile();
 
-            case WeaponType.spread:
-            p = MakeProjectile();// Make middle Projectile
+                Vector3 rightVector;
+                Vector3 leftVector;
+
+                p.rigid.velocity = vel;
+
+                rightVector = new Vector3(.3f, 0f, 0f);
+
+                p.transform.position = p.transform.position + rightVector;
+
+                p = MakeProjectile();
+
+                p.rigid.velocity = vel;
+
+                leftVector = new Vector3(-.3f, 0f, 0f);
+
+                p.transform.position = p.transform.position + leftVector;
+
+                break;
+
+            case WeaponType.ordinance:
+
+                p = MakeProjectile();
 
                 p.rigid.velocity = vel;
 
                 p = MakeProjectile(); // Make right Projectile
 
-                    p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
+                p.transform.position = Vector3.up;
+
+                p.transform.rotation = Quaternion.AngleAxis(90, Vector3.back);
 
                 p.rigid.velocity = p.transform.rotation * vel;
 
                 p = MakeProjectile(); // Make left Projectile
 
-                    p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
+                p.transform.position = Vector3.up;
+
+                p.transform.rotation = Quaternion.AngleAxis(-90, Vector3.back);
 
                 p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile();
+
+                p.rigid.velocity = -vel;
 
                 break;
 
 
+            case WeaponType.spread:
 
+                p = MakeProjectile();// Make middle Projectile
+
+                p.rigid.velocity = vel;
+
+                p = MakeProjectile(); // Make right Projectile
+
+                p.transform.rotation = Quaternion.AngleAxis(10, Vector3.back);
+
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                p = MakeProjectile(); // Make left Projectile
+
+                p.transform.rotation = Quaternion.AngleAxis(-10, Vector3.back);
+
+                p.rigid.velocity = p.transform.rotation * vel;
+
+                break;
         }
 
     }
 
-
-
     public Projectile MakeProjectile()
     {// m
 
-            GameObject go = Instantiate<GameObject>(def.projectilePrefab);
+        GameObject go = Instantiate<GameObject>(def.projectilePrefab);
 
         if (transform.parent.gameObject.tag == "Hero")
         { // n
@@ -290,12 +329,8 @@ public class Weapon : MonoBehaviour
         p.type = type;
 
         lastShotTime = Time.time;
-        
+
         return (p);
-
-
-
     }
-
 
 }

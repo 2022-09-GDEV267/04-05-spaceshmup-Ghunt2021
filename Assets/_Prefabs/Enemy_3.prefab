@@ -356,10 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3e62c35ac43e04fbc786287d2ceda2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 13
   fireRate: 0.3
-  health: 10
-  score: 100
+  health: 5
+  score: 400
   showDamageDuration: 0.1
   powerUpDropChance: 1
   originalColors: []

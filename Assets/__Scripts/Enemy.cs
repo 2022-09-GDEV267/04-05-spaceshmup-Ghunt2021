@@ -51,7 +51,7 @@ namespace ShmupPlus
             }
         }
 
-        void Update()
+        public virtual void Update()
         {
             Move();
 
@@ -146,7 +146,7 @@ namespace ShmupPlus
         }
     
 
-        void ShowDamage()
+        protected void ShowDamage()
         {
             foreach (Material m in materials)
             {
@@ -156,7 +156,7 @@ namespace ShmupPlus
             damageDoneTime = Time.time + showDamageDuration;
         }
 
-        void UnShowDamage()
+        protected void UnShowDamage()
         {
             for (int i = 0; i < materials.Length; i++)
             {
